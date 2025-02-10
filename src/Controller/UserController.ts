@@ -77,3 +77,30 @@ export const signin = async (c: Context) => {
   }
 };
 
+export const update = async (c:Context) => {
+   const body = c.req.json()
+   try{
+    const user = await prisma.user.update({
+        where: {
+            email: body.email,
+        },
+        data: {
+            name: body.name,
+        }
+
+    })
+
+    
+    if(!user) {
+     c.status(411)
+     return c.json({message: "wronng user "})       
+    }
+
+    return c.status({message: "update", user})
+
+   }catch{
+
+   }
+}
+
+export const DelteUser
