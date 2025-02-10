@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.3.1",
+    "@rlimit/http": "^0.0.5",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "hono": "^4.6.20",
+    "hono-rate-limiter": "^0.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
