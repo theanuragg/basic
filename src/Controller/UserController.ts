@@ -2,6 +2,7 @@ import { Context, Hono } from "hono";
 import { prisma } from "../Utlis/prisma";
 import * as bcrypt from "bcrypt";
 import { sign } from "hono/jwt";
+import { date, z } from "zod";
 
 export const userRoute = new Hono<{
   Bindings: {
@@ -13,11 +14,21 @@ export const userRoute = new Hono<{
   };
 }>();
 
+const SignupSchemaInput = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
 export const Signup = async (c: Context) => {
   const body = await c.req.json();
-
+ console.log(body)
+  if (body.name || body.email || body.password) {
+    c.status(411);
+    return c.json({ message: "invaild input", c });
+  }
   try {
-    const hashpassword = await bcrypt.hash(body.password, 10); // Use 10 rounds for better security
+    const hashpassword = await bcrypt.hash(body.password, 10); 
     const user = await prisma.user.create({
       data: {
         name: body.name,
@@ -34,6 +45,7 @@ export const Signup = async (c: Context) => {
     return c.json({ message: "User created successfully", user });
   } catch (error) {
     console.error("Signup Error:", error);
+    console.log(error);
     c.status(500);
     return c.json({ error: "Internal server error" });
   }
@@ -77,30 +89,62 @@ export const signin = async (c: Context) => {
   }
 };
 
-export const update = async (c:Context) => {
-   const body = c.req.json()
-   try{
+export const update = async (c: Context) => {
+  const body = await c.req.json();
+
+  if (!body.email || body.name || body.password) {
+    c.status(411);
+    return c.json({ message: "missing feilds" });
+  }
+
+  const hashpassword = await bcrypt.hash(body.password, 6);
+  try {
     const user = await prisma.user.update({
-        where: {
-            email: body.email,
-        },
-        data: {
-            name: body.name,
-        }
+      where: {
+        email: body.email,
+      },
+      data: {
+        name: body.name,
+        password: hashpassword,
+      },
+    });
 
-    })
-
-    
-    if(!user) {
-     c.status(411)
-     return c.json({message: "wronng user "})       
+    if (!user) {
+      c.status(411);
+      return c.json({ message: "wronng user " });
     }
 
-    return c.status({message: "update", user})
+    return c.json({ message: "update user", user });
+  } catch (error) {
+    c.status(500);
+    return c.json({ error: "internal server error" });
+  }
+};
 
-   }catch{
+export const deleteUser = async (c: Context) => {
+  const body = await c.req.json(); 
 
-   }
-}
+  if (!body.email) {
+    c.status(400);
+    return c.json({ message: "Email is needed" });
+  }
 
-export const DelteUser
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: body.email },
+    });
+
+    if (!user) {
+      c.status(404);
+      return c.json({ message: "User doesn't exists" });
+    }
+    await prisma.user.delete({
+      where: { email: body.email },
+    });
+
+    return c.json({ message: "delete user" });
+  } catch (error) {
+    c.status(500);
+    return c.json({ error: "Internal server error" });
+  }
+};

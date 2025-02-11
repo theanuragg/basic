@@ -10,6 +10,6 @@ export const userRoute = new Hono<{
   };
 }>();
 
-userRoute.post ('/api', signin)
-userRoute.post('/api', Signup)
+userRoute.post ('/signin', signin)
+userRoute.post('/signup', Signup)
 

@@ -6,12 +6,14 @@
       "dependencies": {
         "@prisma/client": "^6.3.1",
         "@rlimit/http": "^0.0.5",
+        "@theanurag/katha-common": "^1.0.3",
         "@types/bcrypt": "^5.0.2",
         "bcrypt": "^5.1.1",
         "hono": "^4.6.20",
         "hono-rate-limiter": "^0.4.2",
         "jsonwebtoken": "^9.0.2",
         "prisma": "^6.3.1",
+        "zod": "^3.24.1",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -34,6 +36,8 @@
     "@prisma/get-platform": ["@prisma/get-platform@6.3.1", "", { "dependencies": { "@prisma/debug": "6.3.1" } }, "sha512-AYLq6Hk9xG73JdLWJ3Ip9Wg/vlP7xPvftGBalsPzKDOHr/ImhwJ09eS8xC2vNT12DlzGxhfk8BkL0ve2OriNhQ=="],
 
     "@rlimit/http": ["@rlimit/http@0.0.5", "", {}, "sha512-OxlZPjCW5M1Nk10Ml5I8NwjePXCTMPqVUxKuLZfKjGMrC9HRYWlYFwD+FM/Lxcc/yZhWtXW8OmEBBeBysmy1PA=="],
+
+    "@theanurag/katha-common": ["@theanurag/katha-common@1.0.3", "", { "dependencies": { "zod": "^3.24.1" } }, "sha512-qrpbR3XdeTgOSV22bcnHc8niq2eqGeq13Z8/qecMseF6CaSGt9yS2GAPQ9d8e2mhp+UCQb82E/nueawhVwC5Eg=="],
 
     "@types/bcrypt": ["@types/bcrypt@5.0.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ=="],
 
@@ -188,6 +192,8 @@
     "wrappy": ["wrappy@1.0.2", "", {}, "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="],
 
     "yallist": ["yallist@4.0.0", "", {}, "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="],
+
+    "zod": ["zod@3.24.1", "", {}, "sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A=="],
 
     "fs-minipass/minipass": ["minipass@3.3.6", "", { "dependencies": { "yallist": "^4.0.0" } }, "sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw=="],
 

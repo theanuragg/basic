@@ -6,12 +6,16 @@
   "dependencies": {
     "@prisma/client": "^6.3.1",
     "@rlimit/http": "^0.0.5",
+    "@theanurag/katha-common": "^1.0.3",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
+    "dotenv": "^8.2.0",
     "hono": "^4.6.20",
     "hono-rate-limiter": "^0.4.2",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^6.3.1"
+    "node-fetch": "^3.3.2",
+    "prisma": "^6.3.1",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/bun": "latest"
